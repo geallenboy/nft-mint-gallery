@@ -10,6 +10,6 @@ contract Deploy is Script {
         vm.startBroadcast(pk);
         nft = new SimpleCollectible("AI Short Drama Collectible", "ASDC");
         vm.stopBroadcast();
-        console2.log("SimpleCollectible deployed at:", address(nft));
+        console2.log("SimpleCollectible (OZ) deployed at:", address(nft));
     }
 }

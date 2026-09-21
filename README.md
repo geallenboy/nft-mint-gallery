@@ -13,7 +13,7 @@
 | 层 | 选型 | 原因 |
 |----|------|------|
 | 前端 | Next.js 15 + TypeScript + wagmi v2 + viem + wagmi injected（RainbowKit 见 UPSTREAM 下一步） | 对齐主流 NFT mint 模板（my-nft-dapp / avatar-nft-minter）；类型安全 |
-| 合约 | Foundry（`SimpleCollectible` 自包含 ERC-721） | 编译/测试快；先不引 OpenZeppelin，降低首次 `forge install` 摩擦；学会后再换成 OZ |
+| 合约 | Foundry（`SimpleCollectible` 基于 OpenZeppelin） | 编译/测试快；使用 OZ `ERC721URIStorage` + `ERC721Enumerable`，安全且符合标准 |
 | 链 | Ethereum Sepolia | 水龙头多、工具全、与多数教程一致 |
 
 ## 目录
@@ -75,9 +75,12 @@ npm run dev
 
 合约地址占位：未配置时前端会提示设置 `NEXT_PUBLIC_NFT_ADDRESS`。
 
+> **重新部署说明**：如果之前部署过旧版自包含 ERC-721 合约，迁移到 OZ 版本后需要重新部署，
+> 并更新 `NEXT_PUBLIC_NFT_ADDRESS` 为新合约地址。旧 Sepolia 合约可保留作为历史参照。
+
 ## 学到的点（刻意设计）
 
-- **ERC-721 最小面**：`mint` / `ownerOf` / `tokenURI` / `Transfer`；另提供 `tokensOfOwner` 方便橱窗（O(n)，仅适合学习体量）。
+- **ERC-721 (OpenZeppelin)**：使用 `ERC721URIStorage` + `ERC721Enumerable`；`tokensOfOwner` 基于 `tokenOfOwnerByIndex` 实现（O(1) 查询）。
 - **tokenURI**：可用 `https://placehold.co/...` 占位图，或 `ipfs://...`（前端用 `NEXT_PUBLIC_IPFS_GATEWAY` 解析）。
 - **钱包**：wagmi `injected`（MetaMask）+ 可选 WalletConnect；强制感知 Sepolia。
 - **刷新**：手动 Refresh + `useWatchContractEvent(Transfer)` 自动刷新持仓。

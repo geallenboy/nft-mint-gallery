@@ -33,14 +33,17 @@
 | 点 | 参考项目 | 本仓库 |
 |----|----------|--------|
 | 合约工具 | Hardhat 或外置仓 | **Foundry**（`forge build/test/script`） |
-| ERC-721 实现 | OpenZeppelin | **自包含最小实现**（先懂接口，再换 OZ） |
+| ERC-721 实现 | OpenZeppelin | **OpenZeppelin**（ERC721 + ERC721URIStorage + ERC721Enumerable） |
 | 钱包 UI | RainbowKit | **同样 RainbowKit**（已对齐模板） |
 | 链 | Sepolia（有的还挂 mainnet） | **仅 Sepolia** |
 | 存储 | Pinata 上传 | **占位图 / 自备 URI**（降低密钥门槛；IPFS gateway 仍支持） |
 | 橱窗 | 全量 `tokenCounter` 扫描 | **`tokensOfOwner` + Transfer 监听**（个人橱窗更贴「交易所持仓」） |
 | 范围 | 有的含质押/拍卖 | **刻意不做**：订单簿/版税/多链/主网 |
 
-建议学习顺序：先跑通本仓 → 对照打开 `my-nft-dapp` 的 `providers` / gallery → 再读 `avatar-nft-minter` 的 OZ 合约，尝试把本仓换成 OZ。
+建议学习顺序：先跑通本仓 → 对照打开 `my-nft-dapp` 的 `providers` / gallery → 阅读 `avatar-nft-minter` 的 OZ 合约对比学习。
+
+> **已完成迁移**：本仓已从自包含最小 ERC-721 迁移到 OpenZeppelin 实现。
+> 详见 [`docs/学习笔记/OZ-Migration.md`](学习笔记/OZ-Migration.md) 的对比笔记。
 
 
 ## 4. RainbowKit 说明（诚实记录）
