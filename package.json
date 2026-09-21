@@ -1,0 +1,14 @@
+{
+  "name": "web3-nft-gallery-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sepolia ERC-721 mint + personal gallery learning MVP",
+  "scripts": {
+    "dev": "npm run dev --prefix apps/web",
+    "build:web": "npm run build --prefix apps/web",
+    "install:web": "npm install --prefix apps/web",
+    "contracts:build": "cd contracts && forge build",
+    "contracts:test": "cd contracts && forge test",
+    "contracts:deploy:sepolia": "cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv"
+  }
+}
